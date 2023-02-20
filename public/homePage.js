@@ -41,7 +41,7 @@ moneyManager.addMoneyCallback = (replenBalance) =>
   ApiConnector.addMoney(replenBalance, (response) => {
     if (response.success) {
       ProfileWidget.showProfile(response.data);
-      moneyManager.setMessage(
+      return moneyManager.setMessage(
         true,
         "Успешное пополнение счета на " +
           replenBalance.amount +
@@ -49,7 +49,7 @@ moneyManager.addMoneyCallback = (replenBalance) =>
           replenBalance.currency
       );
     }
-    moneyManager.setMessage(false, response.error);
+    return moneyManager.setMessage(false, response.error);
   });
 
 // =================== Конвертация валют ================
@@ -57,7 +57,7 @@ moneyManager.conversionMoneyCallback = (convertationCurrencyMoney) => {
   ApiConnector.convertMoney(convertationCurrencyMoney, (response) => {
     if (response.success) {
       ProfileWidget.showProfile(response.data);
-      moneyManager.setMessage(
+      return moneyManager.setMessage(
         true,
         "Успешная конвертация суммы " +
           convertationCurrencyMoney.fromAmount +
@@ -65,7 +65,7 @@ moneyManager.conversionMoneyCallback = (convertationCurrencyMoney) => {
           convertationCurrencyMoney.fromCurrency
       );
     }
-    moneyManager.setMessage(false, response.error);
+    return moneyManager.setMessage(false, response.error);
   });
 };
 
@@ -75,7 +75,7 @@ moneyManager.sendMoneyCallback = (transferMoneyToUser) => {
   ApiConnector.transferMoney(transferMoneyToUser, (response) => {
     if (response.success) {
       ProfileWidget.showProfile(response.data);
-      moneyManager.setMessage(
+      return moneyManager.setMessage(
         true,
         "Успешный перевод " +
           transferMoneyToUser.amount +
@@ -85,7 +85,7 @@ moneyManager.sendMoneyCallback = (transferMoneyToUser) => {
           transferMoneyToUser.to
       );
     }
-    moneyManager.setMessage(false, response.error);
+    return moneyManager.setMessage(false, response.error);
   });
 };
 
